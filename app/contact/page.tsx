@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Suspense } from "react";
 import { ContactForm } from "./contact-form";
 
@@ -45,9 +44,6 @@ export default function ContactPage() {
                 <a href="mailto:atchasolutions@pm.me" className="cta-primary rounded-full px-6 py-3 text-center text-sm font-medium">
                   Email Atcha Solutions
                 </a>
-                <Link href="/" className="rounded-full border border-[var(--line)] px-6 py-3 text-center text-sm font-medium hover:bg-white/50">
-                  Back to landing page
-                </Link>
               </div>
             </div>
 

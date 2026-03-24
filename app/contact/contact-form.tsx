@@ -15,6 +15,8 @@ type FormState = {
   reference: string;
 };
 
+type Locale = "en" | "fr";
+
 const initialState: FormState = {
   name: "",
   phone: "",
@@ -36,22 +38,122 @@ declare global {
   }
 }
 
-function getErrorMessage(error?: string) {
+function getCopy(locale: Locale) {
+  if (locale === "fr") {
+    return {
+        errors: {
+        turnstile_failed: "La vérification anti-spam a échoué. Merci de réessayer.",
+        brevo_failed: "L'envoi d'email a échoué côté worker. Vérifie la configuration Brevo.",
+        server_error: "Le worker a renvoyé une erreur serveur. Vérifie les variables et les logs.",
+        invalid_fields: "Certains champs obligatoires sont invalides. Vérifie le formulaire.",
+        default: "L'envoi a échoué. Merci de réessayer ou d'écrire directement à atchasolutions@pm.me.",
+        required: "Merci de remplir correctement les champs obligatoires.",
+        missingEndpoint: "Le point de contact n'est pas configuré. Ajoute NEXT_PUBLIC_CONTACT_ENDPOINT.",
+        missingTurnstile: "Turnstile n'est pas configuré. Ajoute NEXT_PUBLIC_TURNSTILE_SITE_KEY.",
+        missingToken: "Merci de compléter la vérification anti-spam.",
+        sending: "Envoi en cours...",
+        sent: "Votre message a bien été envoyé. Merci.",
+      },
+      labels: {
+        name: "Nom*",
+        phone: "Téléphone (optionnel)",
+        email: "Email*",
+        subject: "Sujet*",
+        message: "Message*",
+        submit: "Envoyer la demande",
+        sending: "Envoi...",
+      },
+      placeholders: {
+        name: "Votre nom*",
+        phone: "Numéro de téléphone",
+        email: "Email*",
+        subject: "Sujet*",
+        message: "Expliquez brièvement ce qu'il faut corriger ou créer.*",
+      },
+      formLegal:
+        "Les informations envoyées via ce formulaire sont utilisées uniquement pour répondre à votre demande et assurer le suivi commercial. En envoyant ce formulaire, vous acceptez que Atcha Solutions, exploité par Atcha Invest OÜ, traite ces données à cette fin.",
+      fallback:
+        "Turnstile n'est pas configuré. Ajoute NEXT_PUBLIC_TURNSTILE_SITE_KEY pour activer la vérification anti-spam.",
+      legalLinks: {
+        privacy: "/fr/privacy-policy",
+        legal: "/fr/legal-notice",
+      },
+      legalPrefix: "Voir la ",
+      legalJoiner: " et les ",
+      defaults: {
+        subject: "Demande de projet",
+        messageFromService: (service: string) => `Bonjour, j'aimerais avoir de l'aide pour ${service}.`,
+        messageFromReference: (reference: string) => `Bonjour, j'aimerais avoir de l'aide pour un projet lié à ${reference}.`,
+      },
+    };
+  }
+
+  return {
+    errors: {
+      turnstile_failed: "Anti-spam verification failed. Please try again.",
+      brevo_failed: "Email delivery failed on the worker side. Check Brevo sender and API configuration.",
+      server_error: "The worker returned a server error. Check worker environment variables and logs.",
+      invalid_fields: "Some required fields are invalid. Please review the form and try again.",
+      default: "Sending failed. Please try again or email atchasolutions@pm.me directly.",
+      required: "Please complete the required fields correctly.",
+      missingEndpoint: "The contact endpoint is missing. Add NEXT_PUBLIC_CONTACT_ENDPOINT to activate delivery.",
+      missingTurnstile: "Turnstile is not configured yet. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable anti-spam verification.",
+      missingToken: "Please complete the anti-spam verification.",
+      sending: "Sending...",
+      sent: "Your message has been sent successfully. Thank you.",
+    },
+    labels: {
+      name: "Name*",
+      phone: "Phone (optional)",
+      email: "Email*",
+      subject: "Subject*",
+      message: "Message*",
+      submit: "Send request",
+      sending: "Sending...",
+    },
+    placeholders: {
+      name: "Your name*",
+      phone: "Phone number",
+      email: "Email*",
+      subject: "Subject*",
+      message: "Tell me what needs fixing or launching.*",
+    },
+    formLegal:
+      "The information submitted through this form is used only to answer your request and manage the commercial follow-up. By sending this form, you agree that Atcha Solutions, operated by Atcha Invest OÜ, may process this data for that purpose.",
+    fallback:
+      "Turnstile is not configured yet. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable anti-spam verification.",
+    legalLinks: {
+      privacy: "/privacy-policy",
+      legal: "/legal-notice",
+    },
+    legalPrefix: "See the ",
+    legalJoiner: " and ",
+    defaults: {
+      subject: "Project request",
+      messageFromService: (service: string) => `Hello, I would like help with ${service}.`,
+      messageFromReference: (reference: string) => `Hello, I would like help on a project related to ${reference}.`,
+    },
+  };
+}
+
+function getErrorMessage(locale: Locale, error?: string) {
+  const copy = getCopy(locale);
   switch (error) {
     case "turnstile_failed":
-      return "Anti-spam verification failed. Please try again.";
+      return copy.errors.turnstile_failed;
     case "brevo_failed":
-      return "Email delivery failed on the worker side. Check Brevo sender and API configuration.";
+      return copy.errors.brevo_failed;
     case "server_error":
-      return "The worker returned a server error. Check worker environment variables and logs.";
+      return copy.errors.server_error;
     case "invalid_fields":
-      return "Some required fields are invalid. Please review the form and try again.";
+      return copy.errors.invalid_fields;
     default:
-      return "Sending failed. Please try again or email atchasolutions@pm.me directly.";
+      return copy.errors.default;
   }
 }
 
-export function ContactForm() {
+export function ContactForm({ locale = "en" }: { locale?: Locale }) {
+  const copy = useMemo(() => getCopy(locale), [locale]);
   const searchParams = useSearchParams();
   const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "";
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
@@ -76,16 +178,16 @@ export function ContactForm() {
     setFormState((prev) => {
       const nextSubject =
         prev.subject || service || reference || source
-          ? service
-            ? `Project request - ${service}`
-            : "Project request"
+            ? service
+            ? `${copy.defaults.subject} - ${service}`
+            : copy.defaults.subject
           : "";
 
       const nextMessage =
         prev.message || service || reference
           ? service
-            ? `Hello, I would like help with ${service}.`
-            : `Hello, I would like help on a project related to ${reference}.`
+            ? copy.defaults.messageFromService(service)
+            : copy.defaults.messageFromReference(reference)
           : "";
 
       return {
@@ -97,7 +199,7 @@ export function ContactForm() {
         message: prev.message || nextMessage,
       };
     });
-  }, [searchParams]);
+  }, [searchParams, copy]);
 
   useEffect(() => {
     if (!turnstileEnabled || !turnstileReady || !window.turnstile) return;
@@ -127,13 +229,13 @@ export function ContactForm() {
 
     const form = event.currentTarget;
     if (!form.reportValidity()) {
-      setStatus({ message: "Please complete the required fields correctly.", type: "error" });
+      setStatus({ message: copy.errors.required, type: "error" });
       return;
     }
 
     if (!endpoint) {
       setStatus({
-        message: "The contact endpoint is missing. Add NEXT_PUBLIC_CONTACT_ENDPOINT to activate delivery.",
+          message: copy.errors.missingEndpoint,
         type: "error",
       });
       return;
@@ -141,14 +243,14 @@ export function ContactForm() {
 
     if (!turnstileEnabled) {
       setStatus({
-        message: "Turnstile is not configured yet. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable anti-spam verification.",
+          message: copy.errors.missingTurnstile,
         type: "error",
       });
       return;
     }
 
     if (!turnstileToken) {
-      setStatus({ message: "Please complete the anti-spam verification.", type: "error" });
+      setStatus({ message: copy.errors.missingToken, type: "error" });
       return;
     }
 
@@ -160,7 +262,7 @@ export function ContactForm() {
 
     try {
       setSubmitting(true);
-      setStatus({ message: "Sending...", type: "idle" });
+      setStatus({ message: copy.errors.sending, type: "idle" });
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -171,7 +273,7 @@ export function ContactForm() {
       const data = (await response.json().catch(() => null)) as { error?: string; details?: string } | null;
 
       if (!response.ok) {
-        const baseMessage = getErrorMessage(data?.error);
+        const baseMessage = getErrorMessage(locale, data?.error);
         const details = process.env.NODE_ENV !== "production" && data?.details ? ` (${data.details})` : "";
         setStatus({ message: `${baseMessage}${details}`, type: "error" });
         return;
@@ -180,10 +282,10 @@ export function ContactForm() {
       setFormState({ ...initialState, source: formState.source, service: formState.service, reference: formState.reference });
       setTurnstileToken("");
       window.turnstile?.reset?.("#turnstileMount");
-      setStatus({ message: "Your message has been sent successfully. Thank you.", type: "success" });
+      setStatus({ message: copy.errors.sent, type: "success" });
     } catch {
       setStatus({
-        message: "Sending failed. Please try again or email atchasolutions@pm.me directly.",
+        message: copy.errors.default,
         type: "error",
       });
     } finally {
@@ -208,46 +310,47 @@ export function ContactForm() {
         <input type="hidden" name="reference" value={formState.reference} />
 
         <label>
-          <span>Name*</span>
-          <input type="text" name="name" value={formState.name} onChange={handleChange} required minLength={2} placeholder="Your name*" autoComplete="name" />
+          <span>{copy.labels.name}</span>
+          <input type="text" name="name" value={formState.name} onChange={handleChange} required minLength={2} placeholder={copy.placeholders.name} autoComplete="name" />
         </label>
 
         <label>
-          <span>Phone (optional)</span>
-          <input type="tel" name="phone" value={formState.phone} onChange={handleChange} placeholder="Phone number" autoComplete="tel" />
+          <span>{copy.labels.phone}</span>
+          <input type="tel" name="phone" value={formState.phone} onChange={handleChange} placeholder={copy.placeholders.phone} autoComplete="tel" />
         </label>
 
         <label>
-          <span>Email*</span>
-          <input type="email" name="email" value={formState.email} onChange={handleChange} required placeholder="Email*" autoComplete="email" />
+          <span>{copy.labels.email}</span>
+          <input type="email" name="email" value={formState.email} onChange={handleChange} required placeholder={copy.placeholders.email} autoComplete="email" />
         </label>
 
         <label>
-          <span>Subject*</span>
-          <input type="text" name="subject" value={formState.subject} onChange={handleChange} required minLength={3} placeholder="Subject*" />
+          <span>{copy.labels.subject}</span>
+          <input type="text" name="subject" value={formState.subject} onChange={handleChange} required minLength={3} placeholder={copy.placeholders.subject} />
         </label>
 
         <label>
-          <span>Message*</span>
-          <textarea name="message" rows={6} value={formState.message} onChange={handleChange} required minLength={10} placeholder="Tell me what needs fixing or launching.*" />
+          <span>{copy.labels.message}</span>
+          <textarea name="message" rows={6} value={formState.message} onChange={handleChange} required minLength={10} placeholder={copy.placeholders.message} />
         </label>
 
         <div className="turnstile-shell">
           {turnstileEnabled ? (
             <div id="turnstileMount" className="cf-turnstile" aria-live="polite" />
           ) : (
-            <div className="turnstile-fallback">Turnstile is not configured yet. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable anti-spam verification.</div>
+            <div className="turnstile-fallback">{copy.fallback}</div>
           )}
         </div>
 
         <button type="submit" className="cta-accent rounded-full px-6 py-3 text-sm font-medium" disabled={submitting}>
-          {submitting ? "Sending..." : "Send request"}
+          {submitting ? copy.labels.sending : copy.labels.submit}
         </button>
 
         <p className="form-legal">
-          The information submitted through this form is used only to answer your request and manage the commercial
-          follow-up. By sending this form, you agree that Atcha Solutions, operated by Atcha Invest OÜ, may process
-          this data for that purpose. See the <a href="/privacy-policy">Privacy Policy</a> and <a href="/legal-notice">Legal Notice</a>.
+          {copy.formLegal} {copy.legalPrefix}
+          <a href={copy.legalLinks.privacy}>{locale === "fr" ? "Politique de confidentialité" : "Privacy Policy"}</a>
+          {copy.legalJoiner}
+          <a href={copy.legalLinks.legal}>{locale === "fr" ? "Mentions légales" : "Legal Notice"}</a>.
         </p>
 
         {status.message ? (

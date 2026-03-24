@@ -1,6 +1,7 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import "./globals.css";
+import { SiteFooter } from "./components/site-footer";
+import { TopBar } from "./components/top-bar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://atchasolutions.vercel.app"),
@@ -47,17 +48,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <TopBar />
         {children}
-        <footer className="site-footer px-5 pb-8 pt-4 sm:px-8 lg:px-10">
-          <div className="mx-auto flex max-w-4xl flex-col gap-3 border-t border-[var(--line)] pt-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-            <p>Atcha Solutions is operated by Atcha Invest OÜ.</p>
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              <Link href="/legal-notice">Legal Notice</Link>
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <a href="mailto:atchasolutions@pm.me">atchasolutions@pm.me</a>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );

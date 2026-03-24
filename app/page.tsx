@@ -4,25 +4,25 @@ export default function Home() {
   const services = [
     {
       title: "Web Fix Express",
-      price: "80-150 EUR",
+      price: "90-180 EUR",
       description:
         "Fast fixes for forms, mobile issues, broken contact paths, tracking, or messy pages.",
     },
     {
       title: "Website Cleanup",
-      price: "150-300 EUR",
+      price: "180-450 EUR",
       description:
         "A practical refresh for small sites that need more clarity, better structure, and stronger credibility.",
     },
     {
       title: "Landing Page 72h",
-      price: "250-450 EUR",
+      price: "390-700 EUR",
       description:
         "A clean, modern page with one clear offer, one clear action, and a mobile-first layout.",
     },
     {
       title: "Custom Website Build",
-      price: "Custom quote",
+      price: "From 850 EUR",
       description:
         "For full websites that need a stronger visual direction, cleaner structure, and custom execution. I can also build with French graphic collaborators when a project needs a sharper design layer.",
     },
