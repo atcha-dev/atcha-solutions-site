@@ -27,7 +27,7 @@ export default function ContactPageFr() {
                 <p>Bon fit pour corrections web, landing pages, nettoyage de site, optimisation mobile et parcours de contact.</p>
                 <p>
                   Pour un bon premier message : lien du site, problème, objectif et délai souhaité. Utilisez le formulaire ou écrivez directement à{" "}
-                  <a href="mailto:atchasolutions@pm.me" className="font-semibold text-[var(--accent-2)]">atchasolutions@pm.me</a>.
+                  <a href="mailto:contact@atchasolutions.com" className="font-semibold text-[var(--accent-2)]">contact@atchasolutions.com</a>.
                 </p>
               </div>
             </div>

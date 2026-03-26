@@ -45,7 +45,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Atcha Solutions",
-    email: "atchasolutions@pm.me",
+    email: "contact@atchasolutions.com",
     areaServed: "Tallinn",
     knowsLanguage: ["English", "French"],
     description:
@@ -83,7 +83,7 @@ export default function Home() {
               Open Contact Form
             </Link>
             <a
-              href="mailto:atchasolutions@pm.me"
+              href="mailto:contact@atchasolutions.com"
               className="inline-flex items-center justify-center rounded-full border border-[var(--line)] bg-white/50 px-6 py-3 text-sm font-semibold text-[var(--foreground)] transition-colors hover:bg-white/75"
             >
               Email Directly
@@ -161,8 +161,8 @@ export default function Home() {
           <div className="mt-3 max-w-2xl text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
             If your site is messy, unclear, or quietly losing leads, send the link and I will keep it simple.
           </div>
-          <a href="mailto:atchasolutions@pm.me" className="mt-5 block text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
-            atchasolutions@pm.me
+          <a href="mailto:contact@atchasolutions.com" className="mt-5 block text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
+            contact@atchasolutions.com
           </a>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-white/72">
             Best first message: send your site link, the issue, and whether you want a fix, cleanup, or landing page.
@@ -175,7 +175,7 @@ export default function Home() {
               Open Contact Form
             </Link>
             <a
-              href="mailto:atchasolutions@pm.me"
+              href="mailto:contact@atchasolutions.com"
               className="inline-flex items-center justify-center rounded-full border border-white/22 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/12"
             >
               Email Directly

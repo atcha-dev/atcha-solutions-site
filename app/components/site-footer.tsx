@@ -19,7 +19,7 @@ export function SiteFooter() {
         <div className="flex flex-wrap gap-x-4 gap-y-2">
           <Link href={`${base}/legal-notice`}>{isFr ? "Mentions légales" : "Legal Notice"}</Link>
           <Link href={`${base}/privacy-policy`}>{isFr ? "Politique de confidentialité" : "Privacy Policy"}</Link>
-          <a href="mailto:atchasolutions@pm.me">atchasolutions@pm.me</a>
+          <a href="mailto:contact@atchasolutions.com">contact@atchasolutions.com</a>
         </div>
       </div>
     </footer>

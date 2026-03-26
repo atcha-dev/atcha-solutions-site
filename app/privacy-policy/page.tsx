@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
               <li>Commercial name: Atcha Solutions</li>
               <li>Registry code: 16393220</li>
               <li>Location: Tallinn, Estonia</li>
-              <li>Contact: <a href="mailto:atchasolutions@pm.me">atchasolutions@pm.me</a></li>
+              <li>Contact: <a href="mailto:contact@atchasolutions.com">contact@atchasolutions.com</a></li>
             </ul>
           </article>
 
@@ -76,7 +76,7 @@ export default function PrivacyPolicyPage() {
           <article className="glass-card rounded-[2rem] px-6 py-7 sm:px-8">
             <h2>Your Rights</h2>
             <p className="mt-4">You may request access to, correction of, or deletion of your personal data, as well as restriction or objection where applicable under data protection law.</p>
-            <p className="mt-4">To exercise these rights, contact <a href="mailto:atchasolutions@pm.me">atchasolutions@pm.me</a>.</p>
+            <p className="mt-4">To exercise these rights, contact <a href="mailto:contact@atchasolutions.com">contact@atchasolutions.com</a>.</p>
           </article>
 
           <article className="glass-card rounded-[2rem] px-6 py-7 sm:px-8">

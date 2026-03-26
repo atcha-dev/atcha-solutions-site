@@ -33,15 +33,15 @@ export default function ContactPage() {
                 </p>
                 <p>
                   Best first message: site link, issue, and target timeline. You can also email directly at{" "}
-                  <a href="mailto:atchasolutions@pm.me" className="font-semibold text-[var(--accent-2)]">
-                    atchasolutions@pm.me
+                  <a href="mailto:contact@atchasolutions.com" className="font-semibold text-[var(--accent-2)]">
+                    contact@atchasolutions.com
                   </a>
                   .
                 </p>
               </div>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="mailto:atchasolutions@pm.me" className="cta-primary rounded-full px-6 py-3 text-center text-sm font-medium">
+                <a href="mailto:contact@atchasolutions.com" className="cta-primary rounded-full px-6 py-3 text-center text-sm font-medium">
                   Email Atcha Solutions
                 </a>
               </div>

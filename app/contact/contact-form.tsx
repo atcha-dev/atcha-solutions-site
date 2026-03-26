@@ -46,7 +46,7 @@ function getCopy(locale: Locale) {
         brevo_failed: "L'envoi d'email a échoué côté worker. Vérifie la configuration Brevo.",
         server_error: "Le worker a renvoyé une erreur serveur. Vérifie les variables et les logs.",
         invalid_fields: "Certains champs obligatoires sont invalides. Vérifie le formulaire.",
-        default: "L'envoi a échoué. Merci de réessayer ou d'écrire directement à atchasolutions@pm.me.",
+        default: "L'envoi a échoué. Merci de réessayer ou d'écrire directement à contact@atchasolutions.com.",
         required: "Merci de remplir correctement les champs obligatoires.",
         missingEndpoint: "Le point de contact n'est pas configuré. Ajoute NEXT_PUBLIC_CONTACT_ENDPOINT.",
         missingTurnstile: "Turnstile n'est pas configuré. Ajoute NEXT_PUBLIC_TURNSTILE_SITE_KEY.",
@@ -94,7 +94,7 @@ function getCopy(locale: Locale) {
       brevo_failed: "Email delivery failed on the worker side. Check Brevo sender and API configuration.",
       server_error: "The worker returned a server error. Check worker environment variables and logs.",
       invalid_fields: "Some required fields are invalid. Please review the form and try again.",
-      default: "Sending failed. Please try again or email atchasolutions@pm.me directly.",
+      default: "Sending failed. Please try again or email contact@atchasolutions.com directly.",
       required: "Please complete the required fields correctly.",
       missingEndpoint: "The contact endpoint is missing. Add NEXT_PUBLIC_CONTACT_ENDPOINT to activate delivery.",
       missingTurnstile: "Turnstile is not configured yet. Add NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable anti-spam verification.",
@@ -157,7 +157,7 @@ export function ContactForm({ locale = "en" }: { locale?: Locale }) {
   const searchParams = useSearchParams();
   const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "";
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
-  const contactTo = process.env.NEXT_PUBLIC_CONTACT_TO ?? "atchasolutions@pm.me";
+  const contactTo = process.env.NEXT_PUBLIC_CONTACT_TO ?? "contact@atchasolutions.com";
 
   const [formState, setFormState] = useState<FormState>(initialState);
   const [status, setStatus] = useState<{ message: string; type: "error" | "success" | "idle" }>({

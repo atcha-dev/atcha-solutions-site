@@ -41,7 +41,7 @@ export default function HomeFr() {
     "@context": "https://schema.org",
       "@type": "ProfessionalService",
       name: "Atcha Solutions",
-      email: "atchasolutions@pm.me",
+      email: "contact@atchasolutions.com",
       areaServed: ["France", "Estonia"],
       knowsLanguage: ["French", "English"],
       description:
@@ -122,11 +122,11 @@ export default function HomeFr() {
         <section id="contact" className="rounded-[2rem] border border-[#2c221b] bg-[#17120f] px-5 py-6 text-[#fff7f0] shadow-[0_24px_90px_rgba(23,18,15,0.28)] sm:px-6 sm:py-7">
           <div className="text-sm uppercase tracking-[0.18em] text-white/60">Contact</div>
           <div className="mt-3 max-w-2xl text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">Si votre site est faible, confus, lent ou peu convaincant, envoyez le lien et je cadrerai la solution la plus simple.</div>
-          <a href="mailto:atchasolutions@pm.me" className="mt-5 block text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">atchasolutions@pm.me</a>
+          <a href="mailto:contact@atchasolutions.com" className="mt-5 block text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">contact@atchasolutions.com</a>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-white/72">Pour un bon premier message : lien du site, problème constaté, objectifs et délai souhaité.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/fr/contact" className="inline-flex items-center justify-center rounded-full bg-[#d97745] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(217,119,69,0.28)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#c56638]">Ouvrir le formulaire</Link>
-            <a href="mailto:atchasolutions@pm.me" className="inline-flex items-center justify-center rounded-full border border-white/22 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/12">Écrire directement</a>
+            <a href="mailto:contact@atchasolutions.com" className="inline-flex items-center justify-center rounded-full border border-white/22 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/12">Écrire directement</a>
           </div>
         </section>
       </div>

@@ -13,7 +13,7 @@ This project now matches the same logic as `/home/atchaw/dev/awinextgen/web`:
 
 ```bash
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAACiiFjP86L3l0bPA
-NEXT_PUBLIC_CONTACT_TO=atchasolutions@pm.me
+NEXT_PUBLIC_CONTACT_TO=contact@atchasolutions.com
 NEXT_PUBLIC_CONTACT_ENDPOINT=PASTE_YOUR_WORKER_ENDPOINT_HERE
 ```
 
@@ -25,7 +25,7 @@ with the URL of the worker you are going to create.
 
 ## Notes
 
-- `NEXT_PUBLIC_CONTACT_TO` already points to `atchasolutions@pm.me`
+- `NEXT_PUBLIC_CONTACT_TO` already points to `contact@atchasolutions.com`
 - the worker should receive the form payload and handle the email sending
 - no Brevo API key is needed in this Next project
 - no Turnstile secret is needed in this Next project
@@ -36,4 +36,4 @@ with the URL of the worker you are going to create.
 2. Turnstile creates the verification token in the browser
 3. browser posts to `NEXT_PUBLIC_CONTACT_ENDPOINT`
 4. worker validates Turnstile and sends the email
-5. message arrives at `atchasolutions@pm.me`
+5. message arrives at `contact@atchasolutions.com`

@@ -30,7 +30,7 @@ export default function LegalNoticePage() {
               <li>Registry code: 16393220</li>
               <li>Legal form: Private limited company (OÜ)</li>
               <li>Registered office: Tallinn, Estonia</li>
-              <li>Contact email: <a href="mailto:atchasolutions@pm.me">atchasolutions@pm.me</a></li>
+              <li>Contact email: <a href="mailto:contact@atchasolutions.com">contact@atchasolutions.com</a></li>
             </ul>
           </article>
 
