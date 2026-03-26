@@ -57,7 +57,7 @@ export default function HomeFr() {
         <section className="glass-card rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
           <div className="eyebrow text-xs font-semibold">Atcha Solutions</div>
           <h1 className="mt-4 max-w-3xl text-4xl leading-none font-semibold tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-            Corrections rapides site web, créations landing pages et sites vitrines pour indépendants, TPE et PME.
+            Corrections rapides de site web, créations de landing pages et sites vitrines pour indépendants, TPE et PME.
           </h1>
           <p className="muted mt-6 max-w-2xl text-base leading-7 sm:text-lg">
             Basé à Tallinn, j&apos;interviens en remote en France et ailleurs. Les projets sont pensés pour être cadrés, exécutés et livrés à distance, vite et proprement.
